@@ -1,4 +1,4 @@
-# rag-chatbot (Pinecone + OpenAI + Streamlit)
+## rag-chatbot (Pinecone + OpenAI + Streamlit)
 A lightweight, modular Streamlit app demonstrating the capabilities of a Retrieval-Augmented Generation (RAG) pipeline. This codebase integrates **Pinecone** for vector similarity search, **OpenAI** for language generation (e.g. GPT-4), and **Streamlit** for an interactive UI — making it ideal for showcasing semantic search and grounded generation with real-world data.
 
 ---
@@ -26,6 +26,16 @@ A lightweight, modular Streamlit app demonstrating the capabilities of a Retriev
 
 ---
 
+## 📌 Notes
+
+- This repository **does not include the pipeline** to preprocess documents, generate embeddings, or populate the vector database.
+- It assumes your **Pinecone index is already populated** with 384-dimensional sentence embeddings (e.g., from the `all-MiniLM-L6-v2` model).
+- If you need ingestion functionality, consider implementing a separate data pipeline to:
+  - Load and chunk documents
+  - Generate sentence embeddings
+  - Index them into Pinecone
+
+---
 ## 📦 Getting Started
 
 ### 1. Clone the repository
