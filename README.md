@@ -34,6 +34,8 @@ A lightweight, modular Streamlit app demonstrating the capabilities of a Retriev
   - Load and chunk documents
   - Generate sentence embeddings
   - Index them into Pinecone
+- The embedding model (e.g., all-MiniLM-L6-v2) is loaded into memory during startup.
+- For improved semantic precision and lower memory usage, the app can be reconfigured to use API-based embedding (e.g., OpenAI's text-embedding-ada-002) instead of loading local models at runtime.
 
 ---
 ## 📦 Getting Started
