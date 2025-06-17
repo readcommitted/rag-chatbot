@@ -192,7 +192,7 @@ if show_architecture_diagram:
     st.image("assets/RAG Pipeline.jpg",  use_container_width=True, caption="RAG Chatbot Architecture")
 
 st.title("🔍 RAG Chatbot with Pinecone + OpenAI GPT")
-st.write("Prompts base on embeddings: ")
+st.write("Example prompts base on embeddings: ")
 st.write("&nbsp;&nbsp;&nbsp;&nbsp;What happens if I miss a payment? | Are preexisting conditions covered? | What is not covered? | Can I cancel insurance?")
 
 query = st.text_input("Ask a question:")
