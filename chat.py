@@ -1,7 +1,7 @@
 # app.py
+from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 from pinecone import Pinecone
-import openai
 import os
 import torch
 from dotenv import load_dotenv
@@ -15,10 +15,11 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 load_dotenv()
 
+# Load from secrets
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+INDEX_NAME = st.secrets["PINECONE_INDEX"]
 # Load from environment variables
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
-INDEX_NAME = os.environ["PINECONE_INDEX"]
 # all-MiniLM-L6-v2 produces 384-dimensional embeddings
 EMBEDDING_MODEL_NAME = os.environ.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "gpt-3.5-turbo")
@@ -34,8 +35,6 @@ if "top_k" not in st.session_state:
 if "chunks_for_gpt" not in st.session_state:
     st.session_state["chunks_for_gpt"] = DEFAULT_CHUNKS_FOR_GPT
 
-# --- Init OpenAI client ---
-openai.api_key = OPENAI_API_KEY
 
 # --- Load Embedding Model ---
 #    Loads the sentence embedding model used for semantic search.
@@ -132,7 +131,7 @@ def run_openai_llm(question, context):
     Question: {question}
     Answer:"""
 
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model=OPENAI_MODEL, # or gpt-4
         messages=[{"role": "user", "content": prompt}],
         temperature=0.2,
@@ -193,6 +192,8 @@ if show_architecture_diagram:
     st.image("assets/RAG Pipeline.jpg",  use_container_width=True, caption="RAG Chatbot Architecture")
 
 st.title("🔍 RAG Chatbot with Pinecone + OpenAI GPT")
+st.write("Prompts base on embeddings: ")
+st.write("&nbsp;&nbsp;&nbsp;&nbsp;What happens if I miss a payment? | Are preexisting conditions covered? | What is not covered? | Can I cancel insurance?")
 
 query = st.text_input("Ask a question:")
 mode = st.radio("Choose mode:", ["Pinecone Search Only", "Pinecone Search + GPT"])
