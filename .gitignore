@@ -1,4 +1,10 @@
 # created by virtualenv automatically
 *
-.env
 .venv/
+secrets.toml
+.devcontainer
+docker-compose.yaml
+Dockerfile
+Makefile
+sbom.json
+.streamlit/secrets.toml

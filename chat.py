@@ -180,6 +180,8 @@ with st.sidebar:
     show_chunk_sources = st.checkbox("📄 Display source info", value=True)
     dev_mode = st.checkbox("🧪 Developer Mode", value=False)
     show_architecture_diagram = st.checkbox("📐 Architecture Diagram", value=False)
+    # Toggle display of extracted PDF text
+    show_text = st.checkbox("Show PDF Document Text")
 
     st.markdown("---")
     st.markdown(
@@ -191,9 +193,10 @@ if show_architecture_diagram:
     st.title("📐 Architecture")
     st.image("assets/RAG Pipeline.jpg",  use_container_width=True, caption="RAG Chatbot Architecture")
 
+
 st.title("🔍 RAG Chatbot with Pinecone + OpenAI GPT")
-st.write("Example prompts base on embeddings: ")
-st.write("&nbsp;&nbsp;&nbsp;&nbsp;What happens if I miss a payment? | Are preexisting conditions covered? | What is not covered? | Can I cancel insurance?")
+st.write("Example prompts base on refund policy embeddings: ")
+st.write("&nbsp;&nbsp;&nbsp;&nbsp;Summarize the refund and exchange policy. | Can I return digital products? | Is this refund policy compliant with California law? | How do I contact support?")
 
 query = st.text_input("Ask a question:")
 mode = st.radio("Choose mode:", ["Pinecone Search Only", "Pinecone Search + GPT"])
@@ -249,3 +252,8 @@ if submit and query:
                 f'<div style="white-space: pre-wrap; background-color: #f6f8fa; padding: 0.5em; border-radius: 6px;">{chunk}</div>',
                 unsafe_allow_html=True
             )
+
+if show_text:
+    with open("assets/refund.md", "r") as f:
+        refund_text = f.read()
+    st.text_area("Refund Policy", refund_text, height=300)
