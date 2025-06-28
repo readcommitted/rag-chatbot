@@ -2,7 +2,7 @@
 A lightweight, modular Streamlit app demonstrating the capabilities of a Retrieval-Augmented Generation (RAG) pipeline. This codebase integrates **Pinecone** for vector similarity search, **OpenAI** for language generation (e.g. GPT-4), and **Streamlit** for an interactive UI — making it ideal for showcasing semantic search and grounded generation with real-world data.
 
 ## see it in action
-- **RAG Chatbot** - https://chatbot-readcommitted.streamlit.app
+- 🚀 **Live Demo:** [Try the RAG Chatbot](https://chatbot-readcommitted.streamlit.app)
 ---
 
 ## 🔧 Tech Stack
