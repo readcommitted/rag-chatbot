@@ -7,4 +7,5 @@ sentence-transformers
 pyyaml
 python-dotenv
 setuptools==80.3.1
-torch
+torch==2.7.1
+pillow==11.3.0
